@@ -1,44 +1,80 @@
-\documentclass{article}
+\documentclass[answers]{exam}
 \usepackage{amsmath, fullpage}
 \usepackage{amssymb}
 \usepackage{graphicx}
+
 \begin{document}
+
 
 \title{Interview Questions and Solutions}
 \author{Mackenzie Qu}
 %\date{\vspace{-5ex}}
 \maketitle
 \thispagestyle{empty}
+\section{Regression Analysis}
+\begin{questions}
+%Regression Theory
+\question Suppose you wanted to model $Y$ using $X$, and you decided to use the linear regression:
+\[
+  Y = X \beta + \varepsilon
+  \text{.}
+\]
+What assumptions are being made?
+How would you find $\beta$?
+What tests can be done on $\beta$ afterwards?
 
-\section{Questions}
-\subsection{Ants and Rope}
-{\large 500 ants are randomly put on a 1 metre string. 
+\begin{solution}[.2in]
+    \\
+    The genearl assumptions for linear regression are:
+    \begin{itemize}
+        \item Weak exogeneity, meaning that the variables are treated as fixed values with no 
+        measurement errors.
+        \item Linearity: The relationship between the independent and the dependent
+     variables is linear, shown by the mean of the dependent variable is a linear combination
+     of the parameters and dependent variables. However, the assumptions of linearity is only restricting the parameters.
+     Transformation(like polynomial regression) techniques can be used to fit datasets.
+        \item No perfect multicollinearity(for multiple regression): The independent variables are not correlate to each other. The common problems includes overfitting.
+        \item Constant Variance(homoscedasticity): The variance of the errors does not depend on the value of
+        the predictor variables.
+        \item Independence of errors: The errors of the dependent variables are uncorrelated of each other.
+        \item Error term distribution: The error terms are generally assumed to be Normally distributed $N(\mu, \sigma^2)$, but other distributions can be used. 
+    \end{itemize}
+
+\end{solution}
+
+\question %Regression Theory
+What are the significance tests used for the parameters estimated in a logistic regression?
+How are they different than those used for a linear regression?
+
+\question
+%Regression Theory
+What are the assumptions required for a linear regression?
+What is multicollinearity, and what are its implications?
+How would you measure goodness of fit?
+
+\question
+%Regression Theory
+What assumptions are needed for a linear regression?
+Are they the same for a logistic regression?
+How would you test the significance of the parameters for a linear regression?
+Would you use the same test in the case of a logistic regression?
+\end{questions}
+
+\section{Probability and Statistics}
+\begin{questions}
+    
+\question
+500 ants are randomly put on a 1 metre string. 
 Each ant randomly moves toward on end of the string with equal 
 probability to the left or the right at constant speed of 1 m/min 
 until it falls off one end of the string. 
 Also assume that the size of the ant is infinitely small. 
 When two ants collide head-on, they both immediately change directions 
 and keep on moving at 1 m/min. 
-What is the expected time for all ants to fall off the string?}
+What is the expected time for all ants to fall off the string?
 
-\subsection{Noodle Bowl}
-\large{There are 50 noodles in a bowl. 
-You can tie two ends of either one noodle or two different noodles, forming a nod.
-After 50 nods are tied. What is the expected value of number of circles in the bowl?}
-\subsection{}
-\large{There are two dice. The game is as following: 
-Two dice will be thrown at once. 
-Adding the number together you will get a number ranging from 2 to 12.
-The probability of getting 12 is 40\%, and 6\% for getting 2,3,4,5,...11
-Person A and B will need to guess what the number would be. 
-The one who has a closer guess will win.
-A will guess first and then B guess, after they've guessed, 
-two dice will be thrown at once, 
-what number should A guess and what number should be B guess?}
-
-\section{Solutions}
-\subsection{Ants and Rope}
-Consider the case where there is only 1 ant on the string. The ant will 
+\begin{solution}
+    Consider the case where there is only 1 ant on the string. The ant will 
 have a position of $d_l$, denoting the distance to the left and $d_r$ denoting 
 the distance to the right, such that $d_l+d_r = 1$.\newline 
 Let $t_1$ be the time for the ant to fall off the rope. To find
@@ -83,5 +119,23 @@ To find the answer for 500 ants, let $Y = max\{D_1,..., D_{500}\}$. It follows:
     f_y(y) &= 500*y^{499},\\
     E(Y) &= \frac{500}{501}
 \end{align*}
+
+\end{solution}
+
+\question
+There are 50 noodles in a bowl. 
+You can tie two ends of either one noodle or two different noodles, forming a nod.
+After 50 nods are tied. What is the expected value of number of circles in the bowl?
+\question
+There are two dice. The game is as following: 
+Two dice will be thrown at once. 
+Adding the number together you will get a number ranging from 2 to 12.
+The probability of getting 12 is 40\%, and 6\% for getting 2,3,4,5,...11
+Person A and B will need to guess what the number would be. 
+The one who has a closer guess will win.
+A will guess first and then B guess, after they've guessed, 
+two dice will be thrown at once, 
+what number should A guess and what number should be B guess?
+\end{questions}
 
 \end{document}
