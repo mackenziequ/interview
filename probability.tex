@@ -2,6 +2,8 @@
 \usepackage{amsmath, fullpage}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{hyperref}
+
 
 \begin{document}
 
@@ -25,7 +27,7 @@ What tests can be done on $\beta$ afterwards?
 
 \begin{solution}[.2in]
     \\
-    The genearl assumptions for linear regression are:
+    The general assumptions for linear regression are:
     \begin{itemize}
         \item Weak exogeneity: The variables are treated as fixed values with no 
         measurement errors. Meaning that the error term is uncorrelated with the independent variables.
@@ -33,7 +35,7 @@ What tests can be done on $\beta$ afterwards?
      variables is linear, shown by the mean of the dependent variable is a linear combination
      of the parameters and dependent variables. However, the assumptions of linearity is only restricting the parameters.
      Transformation(like polynomial regression) techniques can be used to fit datasets.
-        \item No perfect multicollinearity(for multiple regression): The independent variables are not correlate to each other. The common problems includes overfitting.
+        \item No perfect multicollinearity(for multiple regression): The independent variables are not correlate to each other. The common problems include overfitting.
         \item Constant Variance(homoscedasticity): The variance of the errors does not depend on the value of
         the predictor variables.
         \item Independence of errors: The errors of the dependent variables are uncorrelated of each other.
@@ -45,7 +47,7 @@ What tests can be done on $\beta$ afterwards?
 
 \question %Regression Theory
 What are the significance tests used for the parameters estimated in a logistic regression?
-How are they different than those used for a linear regression?
+How are they different from those used for a linear regression?
 
 \question
 %Regression Theory
@@ -82,8 +84,8 @@ Let $t_1$ be the time for the ant to fall off the rope. To find
  the expected time that the aunt will take to fall off, 
  we are
 looking for $E(t_1)$, where
-$$E(t_1) = E(\frac{\text{distance the ant will travel to fall off}}{\text{the volocity the ant is travelling at}})=\frac{E(\text{distance the ant will travel to fall off})}{1}$$
-as the the volocity of ant is constant. 
+$$E(t_1) = E(\frac{\text{distance the ant will travel to fall off}}{\text{the velocity the ant is travelling at}})=\frac{E(\text{distance the ant will travel to fall off})}{1}$$
+as the velocity of ant is constant. 
 \begin{align*}
     E(\text{distance the ant will travel to fall off})=&
     P(\text{travelling to the left direction})\times
@@ -98,7 +100,7 @@ as the the volocity of ant is constant.
 Now consider the case where there are two ants. When two ants collide into each other,
 the momentum of the two ants carry over - we can imagine it as the two ants have swapped positions and
 continued going in the same direction.\\
-In this case, we are looking for the expected value of the maximum amout of time each ant spends on the rope.
+In this case, we are looking for the expected value of the maximum amount of time each ant spends on the rope.
 ie. $E(max\{t_1, t_2\})$, which is equivalent to finding the maximum distance an ant is from the edge of the rope.\\
 Since each ant is randomly dropped onto the rope, the distance $D_i$ of each ant toward the direction it is moving is 
 independent and identically distributed on $Uniform(0,1)$. 
@@ -124,9 +126,39 @@ To find the answer for 500 ants, let $Y = max\{D_1,..., D_{500}\}$. It follows:
 \end{solution}
 
 \question
-There are 50 noodles in a bowl. 
-You can tie two ends of either one noodle or two different noodles, forming a nod.
-After 50 nods are tied. What is the expected value of number of circles in the bowl?
+You have 100 noodles in your soup bowl. Being blindfolded, 
+you are told to take two ends of some noodles 
+(each end of any noodle has the same probability of being chosen) 
+in your bowl and connect them. 
+You continue until there are no free ends. 
+The number of loops formed by the noodles this way is stochastic. 
+Calculate the expected number of circles.
+
+\begin{solution}
+    In this question, we'll explore the concept of conditional expectation and induction. Consider the event of picking up a random end of the noodle, denote
+    the probability of choosing another end from the same noodle $P(S)$, such that $P(S)+P(\overline{S}) = 1$.\\
+    To start, we consider the case when there is only 1 noodle in the bowl, 
+    then 
+    $$E(n=1)=P(S)*1+P(\overline{S})*0 = 1$$
+    as there is only one noodle and 2 ends in the bowl, and the expected value of
+    making a loop is 1. \\
+
+    When we add another noodle to it, we can denote the expected value of $n=2$ as:
+    \begin{equation}\label{eq:1}
+        E(n=2) = E(n=2|P(S))*P(S)+E(n=2|P(\overline{S}))* P(\overline{S})
+    \end{equation}
+    Now we have to consider the cases that of $E(n=2|P(S))$ and $E(n=2|P(\overline{S}))$,
+    which denotes the expected value of loops when there are two noodles in the bowl given that 
+    the first noodle formed a loop with its end, and when the first noodle did not form a loop with its end, respectively.
+    \begin{enumerate}
+        \item Consider the first case - when there are two noodles in a bowl, and the first randomly
+        selected end of the noodle formed a loop with the next randomly selected end. Then, \\$E(n=2|P(S)) = E(n=1)+1 = 2$
+        \item In the second case, if the two ends did not end up forming a loop, then the two noodles are connected, and we
+        are left with 1 long noodle. Then $E(n=2|P(\overline{S})) = E(n=1) = 1$
+    \end{enumerate}
+    Combine the findings with equation\eqref{eq:1}, we have $$E(n=2) =2*\frac{1}{3}+1*\frac{2}{3} = \frac{4}{3}$$
+\end{solution}
+
 \question
 There are two dice. The game is as following: 
 Two dice will be thrown at once. 
